@@ -15,10 +15,20 @@ void reduced_form (POLY poly)
             rform += " ";
             rform += (it->second >= 0) ? "+" : "-";
         }
-        rform += " ";
-        rform += ss.str();
-        rform += " * X^";
-        rform += std::to_string(it->first);
+        if (ss.str() != "1") {
+            rform += " ";
+            rform += ss.str();
+        }
+        if (ss.str() != "1" && it->first > 0) {
+            rform += " *";
+        }
+        if (it->first > 0) {
+            rform += " X";
+        }
+        if (it->first > 1) {
+            rform += "^";
+            rform += std::to_string(it->first);
+        }
     }
 
     rform += " = 0";
@@ -73,6 +83,8 @@ void solve_two (POLY poly)
         std::cout << real << " - " << complex << "i" << std::endl;
     }
     else {
+        float sol = -b;
         std::cout << "Discriminant is strictly zero, the one solution is:" << std::endl;
+        std::cout << sol << std::endl;
     }
 }

@@ -26,6 +26,13 @@ void computorv1 (std::string input)
 {
     POLY poly = generate_poly(input);
 
+    for (auto it = poly.begin() ; it != poly.end() ; it++) {
+        if (it->second == 0) {
+            poly.erase(it);
+            it = poly.begin();
+        }
+    }
+
     reduced_form(poly);
     polynomial_degree(poly);
     switch (poly.rbegin()->first) {
