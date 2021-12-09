@@ -26,11 +26,18 @@ void computorv1 (std::string input)
 {
     POLY poly = generate_poly(input);
 
-    for (auto it = poly.begin() ; it != poly.end() ; it++) {
+    for (auto it = poly.begin() ; it != poly.end() ; ) {
         if (it->second == 0) {
             poly.erase(it);
             it = poly.begin();
         }
+        else {
+            ++it;
+        }
+    }
+
+    if (poly.empty()) {
+        poly[0] = 0;
     }
 
     reduced_form(poly);
